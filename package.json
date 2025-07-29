@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -61,6 +61,7 @@
     "@suites/di.inversify": "^3.0.1",
     "@suites/doubles.vitest": "^3.0.1",
     "@suites/unit": "^3.0.1",
+    "@svgr/webpack": "^8.1.0",
     "@swc/core": "^1.11.13",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.0",
