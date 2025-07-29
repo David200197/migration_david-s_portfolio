@@ -1,9 +1,3 @@
-type SimpleItemMenu = {
-  title: string;
-  href: string;
-  description?: string;
-};
-
 export type ItemMenu =
   | {
       title: string;
