@@ -4,6 +4,13 @@ import { particlesOptions } from "../data/particles-options";
 
 @Injectable()
 export class PortfolioService {
+  getHomePageTitles() {
+    return {
+      big: "Hi, I am David",
+      small: "I am Fullstack Developer",
+    };
+  }
+
   getItemMenus(): ItemMenu[] {
     return [
       { href: "/#home", title: "HOME" },

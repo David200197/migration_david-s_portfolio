@@ -3,8 +3,13 @@
 import { useState } from "react";
 import { WrapperTitle } from "./WrapperTitle";
 import Typer from "../Typer";
+import { useGetService } from "@/modules/core/contexts/DiContext";
+import { PortfolioService } from "../../services/portfolio-service";
 
 const TitleBanner = () => {
+  const portfolioService = useGetService(PortfolioService)
+  const titles = portfolioService.getHomePageTitles()
+
   const [isEndLine, setIsEndLine] = useState(false);
   const onComplete = () => {
     setIsEndLine(true);
@@ -14,17 +19,18 @@ const TitleBanner = () => {
     <WrapperTitle>
       {isEndLine ? (
         <h3
-          className="font-sans"
+          className="font-sans text-5xl"
           style={{ paddingTop: 1.699 }}
           color={"#000000"}
         >
-          Hi, I am David
+          {titles.big}
         </h3>
       ) : (
         <Typer
           color={"#000000"}
+          className="font-sans text-5xl"
           fontSizeCursor={"3rem"}
-          strings={["Hi, I am David"]}
+          strings={[titles.big]}
           typeSpeed={25}
           onComplete={onComplete}
         />
@@ -32,13 +38,14 @@ const TitleBanner = () => {
 
       {isEndLine ? (
         <Typer
+          className="font-sans text-xl mt-2"
           color={"#000000"}
           fontSizeCursor="1.5rem"
-          strings={["I am Fullstack Developer"]}
+          strings={[titles.small]}
           typeSpeed={25}
         />
       ) : (
-        <div style={{ padding: 2 }} />
+        <div className="mt-2" />
       )}
     </WrapperTitle>
   );
