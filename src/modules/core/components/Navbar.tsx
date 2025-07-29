@@ -40,14 +40,14 @@ export function Navbar({ items, icon }: Props) {
               {"href" in item ? (
                 <Link href={item.href} legacyBehavior passHref>
                   <NavigationMenuLink
-                    className={cn(navigationMenuTriggerStyle(), "text-md", "")}
+                    className={cn(navigationMenuTriggerStyle(), "text-md bg-transparent")}
                   >
                     {item.title}
                   </NavigationMenuLink>
                 </Link>
               ) : (
                 <>
-                  <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="bg-transparent" >{item.title}</NavigationMenuTrigger>
                   <NavigationMenuContent className="right-0 left-auto">
                     <ul className="grid w-[300px] gap-4">
                       {item.submenu.map((submenuItem, subIndex) => (
