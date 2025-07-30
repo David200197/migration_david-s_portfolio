@@ -1,6 +1,6 @@
 import { Injectable } from "@/modules/core/decorators/Injectable";
 import { ItemMenu } from "../models/ItemMenu";
-import { particlesOptions } from "../data/particles-options";
+import { particlesOptions } from "./options/particles";
 
 @Injectable()
 export class PortfolioService {
