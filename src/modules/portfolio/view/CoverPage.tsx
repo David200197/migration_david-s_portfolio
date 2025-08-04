@@ -3,7 +3,7 @@ import { BlurScreen } from "../components/BlurScreen";
 import DownButton from "../components/DownButton";
 import TitleBanner from "../components/TitleBanner";
 
-export const HomePage = () => {
+export const CoverPage = () => {
   return (
     <section>
       <TitleBanner />

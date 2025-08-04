@@ -1,9 +1,9 @@
-import { HomePage } from "@/modules/portfolio/view/HomePage";
+import { CoverPage } from "@/modules/portfolio/view/CoverPage";
 
 export default function Home() {
   return (
     <>
-      <HomePage />
+      <CoverPage />
     </>
   );
 }
