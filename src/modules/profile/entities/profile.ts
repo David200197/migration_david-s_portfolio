@@ -1,5 +1,5 @@
 import { GetProfileResponseDTO } from "../dtos/GetProfileResponseDTO";
-import { PersonalDetail } from "./personal-detail";
+import { PersonalDetail } from "../dtos/PersonalDetail";
 
 export class Profile {
   private readonly description: string;
@@ -8,8 +8,8 @@ export class Profile {
 
   constructor(data: GetProfileResponseDTO) {
     this.description = data.description;
-    this.links = data.links.map((link) => new PersonalDetail(link));
-    this.skills = data.skills.map((skill) => new PersonalDetail(skill));
+    this.links = data.links;
+    this.skills = data.skills;
   }
 
   getDescription() {

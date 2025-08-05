@@ -1,11 +1,7 @@
-export interface PersonalDetailDTO {
-  icon: string;
-  ref: string;
-  tooltip: string;
-}
+import { PersonalDetail } from "./PersonalDetail";
 
 export interface GetProfileResponseDTO {
   description: string;
-  links: PersonalDetailDTO[];
-  skills: PersonalDetailDTO[];
+  links: PersonalDetail[];
+  skills: PersonalDetail[];
 }

@@ -1,4 +1,5 @@
-import { PersonalDetailDTO } from "../dtos/GetProfileResponseDTO";
+import { FC, SVGProps, useMemo } from "react"
+
 import ApolloSvg from '@/modules/core/assets/skills/apollo.svg'
 import CssSvg from '@/modules/core/assets/skills/css.svg'
 import ExpressSvg from '@/modules/core/assets/skills/express.svg'
@@ -21,49 +22,34 @@ import GithubSvg from '@/modules/core/assets/links/github.svg'
 import LinkedInSvg from '@/modules/core/assets/links/linkedin.svg'
 import TelegramSvg from '@/modules/core/assets/links/telegram.svg'
 import WhatsappSvg from '@/modules/core/assets/links/whatsapp.svg'
-import { FC, SVGProps } from "react";
 
-type Icon = FC<SVGProps<{}>>
+const icons: Record<string, FC<SVGProps<{}>>> = {
+    apollo: ApolloSvg,
+    typescript: TypescriptSvg,
+    adonisjs: AdonisSvg,
+    sass: SassSvg,
+    css: CssSvg,
+    plasmo: PlasmoSvg,
+    capacitorjs: CapacitorJsSvg,
+    cv: CvSvg,
+    express: ExpressSvg,
+    react: ReactSvg,
+    graphql: GraphqlSvg,
+    html: HtmlSvg,
+    javascript: JavascriptSvg,
+    node: NodeSvg,
+    materialui: MaterialUISvg,
+    nest: NestSvg,
+    next: NextSvg,
+    tailwind: TailwindSvg,
+    github: GithubSvg,
+    linkedin: LinkedInSvg,
+    telegram: TelegramSvg,
+    whatsapp: WhatsappSvg
+}
 
-export class PersonalDetail {
-    tooltip: string;
-    icon: Icon;
-    ref: string;
-
-    constructor(data: PersonalDetailDTO) {
-        this.tooltip = data.tooltip;
-        this.icon = this.getIcon(data.icon)
-        this.ref = data.ref
-    }
-
-    private getIcon(icon: string) {
-        const icons: Record<string, Icon> = {
-            apollo: ApolloSvg,
-            typescript: TypescriptSvg,
-            adonisjs: AdonisSvg,
-            sass: SassSvg,
-            css: CssSvg,
-            plasmo: PlasmoSvg,
-            capacitorjs: CapacitorJsSvg,
-            cv: CvSvg,
-            express: ExpressSvg,
-            react: ReactSvg,
-            graphql: GraphqlSvg,
-            html: HtmlSvg,
-            javascript: JavascriptSvg,
-            node: NodeSvg,
-            materialui: MaterialUISvg,
-            nest: NestSvg,
-            next: NextSvg,
-            tailwind: TailwindSvg,
-            github: GithubSvg,
-            linkedin: LinkedInSvg,
-            telegram: TelegramSvg,
-            whatsapp: WhatsappSvg
-        }
-
-        const Default = () => <></>
-
-        return icons[icon] || Default
-    }
+type Props = { icon: string, svgProps: SVGProps<{}> }
+export const PersonalDetailIcon = ({ icon, svgProps }: Props) => {
+    const Icon = useMemo(() => icons[icon], [icon])
+    return <Icon {...svgProps} />
 }
