@@ -7,7 +7,7 @@ export class PortfolioService {
   getHomePageTitles() {
     return {
       big: "Hi, I am David",
-      small: "I am Fullstack Developer",
+      small: "I Fullstack Developer",
     };
   }
 
