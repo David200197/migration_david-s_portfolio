@@ -1,0 +1,15 @@
+.astronaut_avatar {
+  width: 270px;
+  height: 270px;
+  animation: rotation 200s linear infinite;
+  margin-top: 10px;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

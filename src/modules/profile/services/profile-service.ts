@@ -31,7 +31,7 @@ export class ProfileService {
         {
           tooltip: "Download CV",
           icon: "cv",
-          ref: "cv_path",
+          ref: "/cv/en.pdf",
         },
       ],
       skills: [
