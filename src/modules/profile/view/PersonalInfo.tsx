@@ -2,7 +2,7 @@ import { getService } from "@/modules/core/utils/di-utils";
 import { ProfileContainer } from "../components/ProfileContainer";
 import { ProfileService } from "../services/profile-service";
 import { AstronautAvatar } from "../components/AstronautAvatar";
-import { PersonalDetailIcon } from "../components/PersonalDetailIcon";
+import { PersonalDetailIcon } from "../../core/components/PersonalDetailIcon";
 
 const profileService = getService(ProfileService);
 const profile = profileService.getProfile();
@@ -21,12 +21,10 @@ export const PersonalInfo = () => (
             <PersonalDetailIcon
               key={link.icon}
               personalDetail={link}
-              svgProps={{
-                color: "#fff",
-                fill: "#fff",
-                style: { margin: "0 10px" },
-                width: "30px",
-              }}
+              color="#fff"
+              fill="#fff"
+              style={{ margin: "0 10px" }}
+              width="30px"
             />
           ))}
         </div>
@@ -38,11 +36,9 @@ export const PersonalInfo = () => (
             <PersonalDetailIcon
               key={skill.icon}
               personalDetail={skill}
-              svgProps={{
-                color: "#fff",
-                fill: "#fff",
-                width: "30px",
-              }}
+              color="#fff"
+              fill="#fff"
+              width="30px"
             />
           ))}
         </div>

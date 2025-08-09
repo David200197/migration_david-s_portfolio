@@ -22,7 +22,7 @@ import GithubSvg from "@/modules/core/assets/links/github.svg";
 import LinkedInSvg from "@/modules/core/assets/links/linkedin.svg";
 import TelegramSvg from "@/modules/core/assets/links/telegram.svg";
 import WhatsappSvg from "@/modules/core/assets/links/whatsapp.svg";
-import { PersonalDetail } from "../dtos/PersonalDetail";
+import { PersonalDetail } from "../models/PersonalDetail";
 import {
   Tooltip,
   TooltipContent,
@@ -54,18 +54,18 @@ const icons: Record<string, FC<SVGProps<{}>>> = {
   whatsapp: WhatsappSvg,
 };
 
-type Props = { personalDetail: PersonalDetail; svgProps?: SVGProps<{}> };
-export const PersonalDetailIcon = ({
-  personalDetail,
-  svgProps = {},
-}: Props) => {
+interface Props extends SVGProps<{}> {
+  personalDetail: PersonalDetail;
+}
+
+export const PersonalDetailIcon = ({ personalDetail, ...props }: Props) => {
   const Icon = useMemo(() => icons[personalDetail.icon], [personalDetail.icon]);
 
   return (
     <Tooltip>
       <TooltipTrigger>
         <a href={personalDetail.ref} target="_blank">
-          {Icon && <Icon {...svgProps} />}
+          {Icon && <Icon {...props} />}
         </a>
       </TooltipTrigger>
       <TooltipContent>

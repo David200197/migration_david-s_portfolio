@@ -1,5 +1,5 @@
 import { GetProfileResponseDTO } from "../dtos/GetProfileResponseDTO";
-import { PersonalDetail } from "../dtos/PersonalDetail";
+import { PersonalDetail } from "../../core/models/PersonalDetail";
 
 export class Profile {
   private readonly description: string;
