@@ -1,6 +1,7 @@
 import { Injectable } from "@/modules/core/decorators/Injectable";
-import { ItemMenu } from "../models/ItemMenu";
+import { GetItemMenuDTO } from "../models/GetItemMenuDTO";
 import { particlesOptions } from "./options/particles";
+import { ItemMenues } from "../entities/ItemMenues";
 
 @Injectable()
 export class PortfolioService {
@@ -11,8 +12,8 @@ export class PortfolioService {
     };
   }
 
-  getItemMenus(): ItemMenu[] {
-    return [
+  getItemMenus(): ItemMenues {
+    return new ItemMenues([
       { href: "/#home", title: "HOME" },
       {
         href: "/#about_me",
@@ -39,7 +40,7 @@ export class PortfolioService {
           },
         ],
       },
-    ];
+    ]);
   }
 
   getParticlesOptions() {

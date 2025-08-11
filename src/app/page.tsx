@@ -8,8 +8,9 @@ export default function Home() {
     <>
       <CoverPage />
       <PersonalInfo />
+      {/* 
       <JobSection />
-      <BlogRedirect />
+      <BlogRedirect /> */}
     </>
   );
 }

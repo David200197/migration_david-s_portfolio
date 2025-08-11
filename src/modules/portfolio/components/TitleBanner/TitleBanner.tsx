@@ -19,7 +19,7 @@ const TitleBanner = () => {
     <WrapperTitle>
       {isEndLine ? (
         <h3
-          className="font-sans text-5xl"
+          className="font-sans text-3xl lg:text-5xl"
           style={{ paddingTop: 1.699 }}
           color={"#000000"}
         >
@@ -28,7 +28,7 @@ const TitleBanner = () => {
       ) : (
         <Typer
           color={"#000000"}
-          className="font-sans text-5xl"
+          className="font-sans text-3xl lg:text-5xl"
           fontSizeCursor={"3rem"}
           strings={[titles.big]}
           typeSpeed={25}
@@ -38,14 +38,14 @@ const TitleBanner = () => {
 
       {isEndLine ? (
         <Typer
-          className="font-sans text-xl mt-2"
+          className="font-sans text-base lg:text-xl mt-2"
           color={"#000000"}
           fontSizeCursor="1.5rem"
           strings={[titles.small]}
           typeSpeed={25}
         />
       ) : (
-        <div className="mt-2" />
+        <div className="mt-0 md:mt-2" />
       )}
     </WrapperTitle>
   );

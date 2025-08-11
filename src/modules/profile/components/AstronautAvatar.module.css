@@ -1,6 +1,4 @@
 .astronaut_avatar {
-  width: 270px;
-  height: 270px;
   animation: rotation 200s linear infinite;
   margin-top: 10px;
 }
