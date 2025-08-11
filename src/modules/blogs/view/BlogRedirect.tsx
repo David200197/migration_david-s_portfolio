@@ -6,8 +6,8 @@ export const BlogRedirect = () => {
   return (
     <BlogContainer>
       <h1 className="text-white text-center text-2xl mb-6">Blogs</h1>
-      <img src="/astronaut_blog.svg" width={200} alt="" />
-      <p className="text-white mt-5">
+      <img src="/astronaut_blog.svg" alt="astronaut_blog" className="w-[150px] md:w-[200px]" />
+      <p className="text-white text-center mt-5">
         You can see some of my personal blogs in this section
       </p>
       <Button asChild className="mt-5" variant={"outline"} >

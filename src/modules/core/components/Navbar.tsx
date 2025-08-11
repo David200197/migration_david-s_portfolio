@@ -22,6 +22,7 @@ import {
 } from "../ui/drawer";
 import Menu from "@/modules/core/assets/menu.svg";
 import { ItemMenues } from "@/modules/portfolio/entities/ItemMenues";
+import { Button } from "../ui/button";
 
 type Icon = {
   src: string;
@@ -66,7 +67,7 @@ export function Navbar({ items, icon }: Props) {
                             "text-md bg-transparent"
                           )}
                         >
-                          {item.title.toUpperCase()}
+                          <DrawerClose>{item.title.toUpperCase()}</DrawerClose>
                         </NavigationMenuLink>
                       </Link>
                     </NavigationMenuItem>
