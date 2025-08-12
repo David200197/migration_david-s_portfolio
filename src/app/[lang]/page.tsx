@@ -14,7 +14,7 @@ const profileService = getService(ProfileService);
 const jobsService = getService(JobsService);
 const blogService = getService(BlogService);
 
-export default async function Home({}) {
+export default async function Home() {
   const title = await portfolioService.getHomePageTitles();
   const profile = await profileService.getProfile();
   const jobs = await jobsService.getJobs();
