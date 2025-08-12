@@ -3,7 +3,7 @@ import { Injectable } from "../decorators/Injectable";
 import { ZodValidator } from "./zod-validator";
 
 const envSchema = z.object({
-  NEXT_PUBLIC_API_URL: z.string().url(),
+  NEXT_PUBLIC_API_URL: z.string()//.url(),
 });
 
 type EnvSchema = ZInfer<typeof envSchema>;

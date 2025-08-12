@@ -1,45 +1,30 @@
 import { Injectable } from "@/modules/core/decorators/Injectable";
 import { particlesOptions } from "./options/particles";
 import { ItemMenues } from "../entities/ItemMenues";
+import { LocalDataService } from "@/modules/core/services/local-data-service";
+import { GetItemMenuDTO } from "../models/GetItemMenuDTO";
 
 @Injectable()
 export class PortfolioService {
-  getHomePageTitles() {
+  constructor(private readonly localDataService: LocalDataService) {}
+
+  async getHomePageTitles() {
+    const response = await this.localDataService.get<{
+      big: string;
+      small: string;
+    }>("page-title");
+
     return {
-      big: "Hi, I am David",
-      small: "I'm a Fullstack Developer",
+      big: response.big,
+      small: response.small,
     };
   }
 
-  getItemMenus(): ItemMenues {
-    return new ItemMenues([
-      { href: "/#home", title: "HOME" },
-      {
-        href: "/#about_me",
-        title: "ABOUT ME",
-      },
-      {
-        href: "/#jobs",
-        title: "JOBS",
-      },
-      { href: "/blogs", title: "BLOGS" },
-      {
-        title: "OTHERS",
-        submenu: [
-          {
-            href: "/bookmarker",
-            title: "Bookmarker",
-            description: "Bookmark manager",
-          },
-          { href: "/demos", title: "Demos", description: "Various demos" },
-          {
-            href: "/laboratory",
-            title: "Laboratory",
-            description: "Experimental features and projects",
-          },
-        ],
-      },
-    ]);
+  async getItemMenus(): Promise<ItemMenues> {
+    const itemMenu = await this.localDataService.get<GetItemMenuDTO[]>(
+      "item-menu"
+    );
+    return new ItemMenues(itemMenu);
   }
 
   getParticlesOptions() {

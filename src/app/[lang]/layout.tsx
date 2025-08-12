@@ -9,6 +9,7 @@ import { composeProviders } from "@/modules/core/utils/compose-providers";
 import { Navbar } from "@/modules/core/components/navbar";
 import { getService } from "@/modules/core/utils/di-utils";
 import { PortfolioService } from "@/modules/portfolio/services/portfolio-service";
+import { LocaleService } from "@/modules/core/services/locales-services";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,12 +36,20 @@ const Provider = composeProviders([
 ]);
 
 const portfolioService = getService(PortfolioService);
+const localeService = getService(LocaleService);
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "es" }];
+}
+
+type Props = { children: React.ReactNode; params: Promise<{ lang: string }> };
+
+export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  params,
+}: Readonly<Props>) {
+  const { lang } = await params;
+  localeService.setCurrentLocale(lang);
   return (
     <html lang="en">
       <body
@@ -49,7 +58,7 @@ export default function RootLayout({
         <Provider>
           <Toaster position="top-right" />
           <Navbar
-            items={portfolioService.getItemMenus()}
+            items={await portfolioService.getItemMenus()}
             icon={{
               src: "/favicon.svg",
               title: "Portfolio",
