@@ -3,25 +3,28 @@ import { LinkItemMenu } from "./LinkItemMenu";
 import { SubmenuItemMenu } from "./SubmenuItemMenu";
 
 export class ItemMenues {
-  private readonly value: (LinkItemMenu | SubmenuItemMenu)[];
+  private readonly linkItems: LinkItemMenu[] = [];
+  private readonly submenuItems: SubmenuItemMenu[] = [];
 
   constructor(value: GetItemMenuDTO[]) {
-    this.value = this.value = value.map((item) => {
-      if ("href" in item) return new LinkItemMenu(item);
-      return new SubmenuItemMenu(item);
+    value.forEach((item) => {
+      if ("href" in item) return this.linkItems.push(new LinkItemMenu(item));
+      this.submenuItems.push(new SubmenuItemMenu(item));
     });
   }
 
-  getAllItems() {
-    return this.value;
+  getLinkItems(): LinkItemMenu[] {
+    return this.linkItems;
+  }
+
+  getSubmenuItem(): SubmenuItemMenu[] {
+    return this.submenuItems;
   }
 
   toLinkItem() {
-    return this.value
-      .map((item) => {
-        if ("href" in item) return [new LinkItemMenu(item)];
-        return item.submenu.map((subItem) => new LinkItemMenu(subItem));
-      })
+    const linkItemSubmenu = this.submenuItems
+      .map((item) => item.submenu.map((subItem) => new LinkItemMenu(subItem)))
       .flat();
+    return [...this.linkItems, ...linkItemSubmenu];
   }
 }

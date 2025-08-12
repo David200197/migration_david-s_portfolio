@@ -2,15 +2,19 @@ import { PersonalDetail } from "@/modules/core/models/PersonalDetail";
 import { GetJobResponseDTO } from "../dtos/get-job-response-dto";
 
 export class Job {
-  alt: string;
-  logoSrc: string;
-  description: string;
-  time: string;
-  image: string;
-  title: string;
-  skills: PersonalDetail[];
-  type: string;
-  link?: string;
+  readonly alt: string;
+  readonly logoSrc: string;
+  readonly description: string;
+  readonly time: string;
+  readonly image: string;
+  readonly title: string;
+  private _skills: PersonalDetail[];
+  readonly type: string;
+  readonly link?: string;
+
+  get skills() {
+    return this._skills;
+  }
 
   constructor(data: GetJobResponseDTO) {
     this.alt = data.alt;
@@ -19,7 +23,7 @@ export class Job {
     this.time = data.time;
     this.image = data.image;
     this.title = data.title;
-    this.skills = data.skills;
+    this._skills = data.skills;
     this.type = data.type;
     this.link = data.link;
   }

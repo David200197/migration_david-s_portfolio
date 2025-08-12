@@ -6,7 +6,7 @@ import className from "./CoverPage.module.css"
 
 export const CoverPage = () => {
   return (
-    <section className={className.cover_page} >
+    <section className={className.cover_page} id="home" >
       <TitleBanner />
       <DownButton />
       <BackgroundParticles />

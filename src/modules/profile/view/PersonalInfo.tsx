@@ -8,7 +8,7 @@ const profileService = getService(ProfileService);
 const profile = profileService.getProfile();
 
 export const PersonalInfo = () => (
-  <ProfileContainer>
+  <ProfileContainer id="about_me">
     <h1 className="text-center text-white text-2xl">About Me</h1>
     <div className="flex flex-col lg:flex-row mt-6 md:mt-3">
       <div className="flex flex-col w-full items-center justify-center">

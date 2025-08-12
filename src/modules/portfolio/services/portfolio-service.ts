@@ -1,5 +1,4 @@
 import { Injectable } from "@/modules/core/decorators/Injectable";
-import { GetItemMenuDTO } from "../models/GetItemMenuDTO";
 import { particlesOptions } from "./options/particles";
 import { ItemMenues } from "../entities/ItemMenues";
 

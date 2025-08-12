@@ -8,4 +8,8 @@ export class LinkItemMenu {
     this.title = value.title;
     this.href = value.href;
   }
+
+  isHashLink() {
+    return this.href.split("/").at(-1)?.startsWith("#") === true;
+  }
 }

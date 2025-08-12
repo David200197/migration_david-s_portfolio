@@ -6,7 +6,7 @@ import { QueryClientCustomProvider } from "@/modules/core/providers/QueryClientC
 import { DiProvider } from "@/modules/core/contexts/DiContext";
 import { ErrorBoundaryProvider } from "@/modules/core/providers/ErrorBoundaryProvider";
 import { composeProviders } from "@/modules/core/utils/compose-providers";
-import { Navbar } from "@/modules/core/components/Navbar";
+import { Navbar } from "@/modules/core/components/navbar";
 import { getService } from "@/modules/core/utils/di-utils";
 import { PortfolioService } from "@/modules/portfolio/services/portfolio-service";
 

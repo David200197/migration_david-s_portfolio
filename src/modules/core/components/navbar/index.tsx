@@ -8,21 +8,19 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "../ui/navigation-menu";
-import { cn } from "../lib/utils";
-import { GetItemMenuDTO } from "@/modules/portfolio/models/GetItemMenuDTO";
+} from "../../ui/navigation-menu";
+import { cn } from "../../lib/utils";
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "../ui/drawer";
+} from "../../ui/drawer";
 import Menu from "@/modules/core/assets/menu.svg";
 import { ItemMenues } from "@/modules/portfolio/entities/ItemMenues";
-import { Button } from "../ui/button";
+import { NavbarContainer } from "./NavbarContainer";
 
 type Icon = {
   src: string;
@@ -36,7 +34,7 @@ type Props = {
 
 export function Navbar({ items, icon }: Props) {
   return (
-    <div className="flex w-full items-center justify-between py-7 px-10 lg:px-40">
+    <NavbarContainer>
       {icon && (
         <div className="flex items-center">
           <img src={icon.src} alt="navbar-icon" className="h-9 w-9" />
@@ -60,7 +58,12 @@ export function Navbar({ items, icon }: Props) {
                 <NavigationMenuList className="flex flex-col">
                   {items.toLinkItem().map((item, index) => (
                     <NavigationMenuItem key={`menu_item_${index}`}>
-                      <Link href={item.href} legacyBehavior passHref>
+                      <Link
+                        href={item.href}
+                        legacyBehavior
+                        passHref
+                        scroll={item.isHashLink()}
+                      >
                         <NavigationMenuLink
                           className={cn(
                             navigationMenuTriggerStyle(),
@@ -80,50 +83,52 @@ export function Navbar({ items, icon }: Props) {
       </div>
       <NavigationMenu viewport={false} className="hidden lg:flex">
         <NavigationMenuList>
-          {items.getAllItems().map((item, index) => (
+          {items.getLinkItems().map((item, index) => (
             <NavigationMenuItem key={`menu_item_${index}`}>
-              {"href" in item ? (
-                <Link href={item.href} legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={cn(
-                      navigationMenuTriggerStyle(),
-                      "text-md bg-transparent"
-                    )}
-                  >
-                    {item.title}
-                  </NavigationMenuLink>
-                </Link>
-              ) : (
-                <>
-                  <NavigationMenuTrigger className="bg-transparent">
-                    {item.title}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent className="right-0 left-auto">
-                    <ul className="grid w-[300px] gap-4">
-                      {item.submenu.map((submenuItem, subIndex) => (
-                        <li key={`submenu_item_${subIndex}`}>
-                          <NavigationMenuLink asChild>
-                            <Link href={submenuItem.href}>
-                              <div className="font-medium">
-                                {submenuItem.title}
-                              </div>
-                              {submenuItem.description && (
-                                <div className="text-sm text-muted-foreground">
-                                  {submenuItem.description}
-                                </div>
-                              )}
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </>
-              )}
+              <Link
+                href={item.href}
+                legacyBehavior
+                passHref
+                scroll={item.isHashLink()}
+              >
+                <NavigationMenuLink
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    "text-md bg-transparent"
+                  )}
+                >
+                  {item.title}
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          ))}
+          {items.getSubmenuItem().map((item, index) => (
+            <NavigationMenuItem key={`menu_item_${index}`}>
+              <NavigationMenuTrigger className="bg-transparent">
+                {item.title}
+              </NavigationMenuTrigger>
+              <NavigationMenuContent className="right-0 left-auto">
+                <ul className="grid w-[300px] gap-4">
+                  {item.submenu.map((submenuItem, subIndex) => (
+                    <li key={`submenu_item_${subIndex}`}>
+                      <NavigationMenuLink asChild>
+                        <Link href={submenuItem.href}>
+                          <div className="font-medium">{submenuItem.title}</div>
+                          {submenuItem.description && (
+                            <div className="text-sm text-muted-foreground">
+                              {submenuItem.description}
+                            </div>
+                          )}
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
             </NavigationMenuItem>
           ))}
         </NavigationMenuList>
       </NavigationMenu>
-    </div>
+    </NavbarContainer>
   );
 }
