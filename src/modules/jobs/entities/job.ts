@@ -1,5 +1,5 @@
 import { PersonalDetail } from "@/modules/core/models/PersonalDetail";
-import { GetJobResponseDTO } from "../dtos/get-job-response-dto";
+import { JobDTO } from "../dtos/job-dto";
 
 export class Job {
   readonly alt: string;
@@ -16,7 +16,7 @@ export class Job {
     return this._skills;
   }
 
-  constructor(data: GetJobResponseDTO) {
+  constructor(data: JobDTO) {
     this.alt = data.alt;
     this.logoSrc = data.logoSrc;
     this.description = data.description;

@@ -1,14 +1,20 @@
-import { GetJobResponseDTO } from "../dtos/get-job-response-dto";
+import { GetJobsResponseDTO } from "../dtos/get-jobs-response-dto";
 import { Job } from "./job";
 
 export class Jobs {
-  private readonly data: Job[];
+  private readonly sectionTitle: string;
+  private readonly jobs: Job[];
 
-  constructor(data: GetJobResponseDTO[]) {
-    this.data = data.map((item) => new Job(item));
+  constructor(data: GetJobsResponseDTO) {
+    this.jobs = data.jobs.map((item) => new Job(item));
+    this.sectionTitle = data.sectionTitle;
   }
 
-  getData() {
-    return this.data;
+  getJobs() {
+    return this.jobs;
+  }
+
+  getSectionTitle() {
+    return this.sectionTitle;
   }
 }

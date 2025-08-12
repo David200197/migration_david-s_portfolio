@@ -1,6 +1,6 @@
 import { PersonalDetail } from "@/modules/core/models/PersonalDetail";
 
-export interface GetJobResponseDTO {
+export interface JobDTO {
   alt: string;
   logoSrc: string;
   description: string;
