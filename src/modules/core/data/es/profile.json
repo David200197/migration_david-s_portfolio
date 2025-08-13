@@ -1,6 +1,9 @@
 {
-  "sectionTitle": "About Me",
-  "skillTitle": "Skills",
+  "sectionTitle": "Sobre Mí",
+  "technologiesTitle": "Tecnologías",
+  "skillTitle": "Habilidades",
+  "studiesTitle": "Estudios",
+  "studies": "Ingeniero Informático (2016 - 2021) Universidad Camilo Cienfuegos de Matanzas - Cuba",
   "description": "¡Hola! Soy David Alfonso Pereira, un desarrollador fullstack con más de {years} años de experiencia, experto en varias tecnologías y con una mentalidad de trabajo en equipo",
   "links": [
     {

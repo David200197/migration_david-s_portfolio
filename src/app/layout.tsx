@@ -9,7 +9,7 @@ import { composeProviders } from "@/modules/core/utils/compose-providers";
 import { Navbar } from "@/modules/core/components/navbar";
 import { getService } from "@/modules/core/utils/di-utils";
 import { PortfolioService } from "@/modules/portfolio/services/portfolio-service";
-import { LocaleService } from "@/modules/core/services/locales-services";
+import { LocalesManager } from "@/modules/core/services/locales-manager";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +36,7 @@ const Provider = composeProviders([
 ]);
 
 const portfolioService = getService(PortfolioService);
-const localeService = getService(LocaleService);
+const localesManager = getService(LocalesManager);
 
 export function generateStaticParams() {
   return [{ lang: "en" }, { lang: "es" }];
@@ -49,7 +49,7 @@ export default async function RootLayout({
   params,
 }: Readonly<Props>) {
   const { lang } = await params;
-  localeService.setCurrentLocale(lang);
+  localesManager.setCurrentLocale(lang);
   return (
     <html lang="en">
       <body

@@ -1,7 +1,7 @@
 import { Injectable } from "../decorators/Injectable";
 
 @Injectable()
-export class LocaleService {
+export class LocalesManager {
   private _lang: string = "en";
 
   setCurrentLocale(locale: string) {

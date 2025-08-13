@@ -7,8 +7,8 @@ import { ConfigService } from "../services/config-service";
 import { ZodValidator } from "../services/zod-validator";
 import { HttpResponseInterceptor } from "../interceptors/http-response.interceptor";
 import { HttpErrorInterceptor } from "../interceptors/http-error.interceptor";
-import { LocaleService } from "../services/locales-services";
-import { LocalDataService } from "../services/local-data-service";
+import { LocalesManager } from "../services/locales-manager";
+import { LocalRepository } from "../services/local-respository";
 
 export const CoreModule = new ContainerModule((bind) => {
   bind<HttpClient>(CORE_DI.HTTP_CLIENT).to(HttpClientAxios);
@@ -17,6 +17,6 @@ export const CoreModule = new ContainerModule((bind) => {
   bind(ZodValidator).toSelf();
   bind(HttpResponseInterceptor).toSelf();
   bind(HttpErrorInterceptor).toSelf();
-  bind(LocaleService).toSelf();
-  bind(LocalDataService).toSelf();
+  bind(LocalesManager).toSelf();
+  bind(LocalRepository).toSelf();
 });

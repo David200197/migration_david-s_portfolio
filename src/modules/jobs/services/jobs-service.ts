@@ -1,14 +1,14 @@
 import { Injectable } from "@/modules/core/decorators/Injectable";
 import { Jobs } from "../entities/jobs";
-import { LocalDataService } from "@/modules/core/services/local-data-service";
+import { LocalRepository } from "@/modules/core/services/local-respository";
 import { GetJobsResponseDTO } from "../dtos/get-jobs-response-dto";
 
 @Injectable()
 export class JobsService {
-  constructor(private readonly localDataService: LocalDataService) {}
+  constructor(private readonly localRepository: LocalRepository) {}
 
   async getJobs(): Promise<Jobs> {
-    const res = await this.localDataService.get<GetJobsResponseDTO>("jobs");
+    const res = await this.localRepository.get<GetJobsResponseDTO>("jobs");
     return new Jobs(res);
   }
 }
