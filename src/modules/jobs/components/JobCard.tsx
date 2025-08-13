@@ -14,7 +14,7 @@ import { Badge } from "@/modules/core/ui/badge";
 
 type Props = { job: Job };
 export const JobCard = ({ job }: Props) => (
-  <Card>
+  <Card className="hover:shadow-xl transition duration-600 ease-in-out" >
     <CardHeader>
       <div className="flex">
         <img

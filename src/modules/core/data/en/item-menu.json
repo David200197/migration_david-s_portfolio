@@ -16,15 +16,15 @@
     "title": "OTHERS",
     "submenu": [
       {
-        "href": "/en/bookmarker",
-        "title": "Bookmarker",
-        "description": "Bookmark manager"
+        "href": "/en/side-projects",
+        "title": "Side Projects",
+        "description": "This is my side projects"
       },
       { "href": "/en/demos", "title": "Demos", "description": "Various demos" },
       {
         "href": "/en/laboratory",
         "title": "Laboratory",
-        "description": "Experimental features and projects"
+        "description": "Experimental features and projects with documentation"
       }
     ]
   }

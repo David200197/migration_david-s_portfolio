@@ -11,7 +11,8 @@
     "test:watch": "vitest watch",
     "test:coverage": "vitest coverage",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "tool:auto-translate-data": "node ./tools/auto-translate-data.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
