@@ -12,6 +12,7 @@ const baseDataFolder = path.join(
   "data"
 );
 const cvPath = path.join(process.cwd(), "public", "cv");
+const svgPath = path.join(process.cwd(), "src", "modules", "core", "assets");
 
 const langs = ["en", "es"];
 
@@ -30,6 +31,22 @@ const getCommonData = async () => {
   return JSON.parse(data);
 };
 
+const getSvg = async (folderName, icon) => {
+  const iconPath = path.join(svgPath, folderName);
+  const files = await fs.readdir(iconPath);
+  const fileSvg = files.find((file) => file.toLowerCase().includes(icon));
+
+  if (!fileSvg) {
+    console.log(`fileSvg not found: ${icon}`);
+    return "<p>NONE</p>";
+  }
+
+  const svg = await fs.readFile(path.join(iconPath, fileSvg), {
+    encoding: "utf-8",
+  });
+  return svg;
+};
+
 const getTemplateHtml = async () => {
   return await fs.readFile(
     path.join(process.cwd(), "tools", "create-cv", "template.html"),
@@ -37,13 +54,16 @@ const getTemplateHtml = async () => {
   );
 };
 
-const getSocials = (profile) => {
-  return profile.links
-    .filter((link) => link.ref !== "/cv/en.pdf")
-    .map((link) => ({
+const getSocials = async (profile) => {
+  const filterLinks = profile.links.filter((link) => link.ref !== "/cv/en.pdf");
+
+  return await Promise.all(
+    filterLinks.map(async (link) => ({
       to: link.ref,
       title: link.tooltip,
-    }));
+      icon: await getSvg("links", link.icon),
+    }))
+  );
 };
 
 const getCurrentProfile = (common, profile) => {
@@ -57,11 +77,14 @@ const getCurrentProfile = (common, profile) => {
   };
 };
 
-const getCurrentSkills = (profile) => {
-  return profile.skills.map((link) => ({
-    to: link.ref,
-    title: link.tooltip,
-  }));
+const getCurrentSkills = async (profile) => {
+  return await Promise.all(
+    profile.skills.map(async (skill) => ({
+      to: skill.ref,
+      title: skill.tooltip,
+      icon: await getSvg("skills", skill.icon),
+    }))
+  );
 };
 
 const run = async () => {
@@ -76,9 +99,9 @@ const run = async () => {
 
     const template = Handlebars.compile(templateHtml);
 
-    const socials = getSocials(profile);
+    const socials = await getSocials(profile);
     const currentProfile = getCurrentProfile(common, profile);
-    const currentSkills = getCurrentSkills(profile);
+    const currentSkills = await getCurrentSkills(profile);
 
     const cvHtml = template({
       profile: currentProfile,
@@ -96,7 +119,7 @@ const run = async () => {
     await page.setContent(cvHtml);
 
     await page.pdf({
-      path: path.join(cvPath, `cv-${lang}.pdf`),
+      path: path.join(cvPath, `${lang}.pdf`),
       format: "A4",
       displayHeaderFooter: false,
       preferCSSPageSize: false,

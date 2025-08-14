@@ -242,7 +242,7 @@
           </a>
           {{#each socials}}
           <a href="{{this.to}}" class="box-flex" style="color: #fff; text-decoration: none">
-            <div class="social-icon" data-social="{{this.title}}"></div>
+            <div class="social-icon" data-social="{{this.title}}">{{{this.icon}}}</div>
             <p>{{this.to}}</p>
           </a>
           {{/each}}
@@ -388,7 +388,7 @@
           <div style="display: flex; flex-direction: column; margin-top: 10px">
             {{#each skills}}
             <a class="box-flex" href="{{this.to}}" style="color: #0e1327; text-decoration: none">
-              <div class="skill-icon" data-skill="{{this.title}}"></div>
+              <div class="skill-icon" data-skill="{{this.title}}">{{{this.icon}}}</div>
               <p style="margin: 8px">{{this.title}}</p>
             </a>
             {{/each}}
