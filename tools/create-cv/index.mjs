@@ -2,7 +2,6 @@ import fs from "fs/promises";
 import path from "path";
 import Handlebars from "handlebars";
 import { chromium } from "playwright";
-import { title } from "process";
 
 const baseDataFolder = path.join(
   process.cwd(),
