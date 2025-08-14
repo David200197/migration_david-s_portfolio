@@ -1,17 +1,6 @@
-import { Toaster } from "react-hot-toast";
-import { QueryClientCustomProvider } from "@/modules/core/providers/QueryClientCustomProvider";
-import { DiProvider } from "@/modules/core/contexts/DiContext";
-import { ErrorBoundaryProvider } from "@/modules/core/providers/ErrorBoundaryProvider";
-import { composeProviders } from "@/modules/core/utils/compose-providers";
 import { Navbar } from "@/modules/core/components/navbar";
 import { getService } from "@/modules/core/utils/di-utils";
 import { PortfolioService } from "@/modules/portfolio/services/portfolio-service";
-
-const Provider = composeProviders([
-  ErrorBoundaryProvider,
-  DiProvider,
-  QueryClientCustomProvider,
-]);
 
 const portfolioService = getService(PortfolioService);
 
@@ -28,8 +17,7 @@ export default async function RootLayout({
   const { lang } = await params;
 
   return (
-    <Provider>
-      <Toaster position="top-right" />
+    <>
       <Navbar
         items={await portfolioService.getItemMenus(lang)}
         icon={{
@@ -38,6 +26,6 @@ export default async function RootLayout({
         }}
       />
       {children}
-    </Provider>
+    </>
   );
 }

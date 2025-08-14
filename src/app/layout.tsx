@@ -1,6 +1,17 @@
+import { composeProviders } from "@/modules/core/utils/compose-providers";
 import "./globals.css";
 import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ErrorBoundaryProvider } from "@/modules/core/providers/ErrorBoundaryProvider";
+import { DiProvider } from "@/modules/core/contexts/DiContext";
+import { QueryClientCustomProvider } from "@/modules/core/providers/QueryClientCustomProvider";
+import { Toaster } from "react-hot-toast";
+
+const Provider = composeProviders([
+  ErrorBoundaryProvider,
+  DiProvider,
+  QueryClientCustomProvider,
+]);
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +39,10 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Provider>
+          <Toaster position="top-right" />
+          {children}
+        </Provider>
       </body>
     </html>
   );

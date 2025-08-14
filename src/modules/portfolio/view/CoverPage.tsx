@@ -10,7 +10,7 @@ export const CoverPage = () => {
       <TitleBanner />
       <DownButton />
       <BackgroundParticles />
-      <BlurScreen />
+      <BlurScreen height="150%" />
     </section>
   );
 };
