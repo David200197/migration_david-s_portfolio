@@ -5,6 +5,6 @@ import { USER_DI } from "../di/constants";
 import { UserValidator } from "../models/UserValidator";
 
 export const UserModule = new ContainerModule((bind) => {
-  bind(UserService).toSelf().inSingletonScope();
-  bind<UserValidator>(USER_DI.VALIDATOR).to(ZodUserValidator).inRequestScope();
+  bind(UserService).toSelf();
+  bind<UserValidator>(USER_DI.VALIDATOR).to(ZodUserValidator);
 });

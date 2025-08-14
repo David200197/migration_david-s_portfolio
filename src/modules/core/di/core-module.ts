@@ -11,12 +11,12 @@ import { LocalesManager } from "../services/locales-manager";
 import { LocalRepository } from "../services/local-respository";
 
 export const CoreModule = new ContainerModule((bind) => {
-  bind<HttpClient>(CORE_DI.HTTP_CLIENT).to(HttpClientAxios);
-  bind(CORE_DI.CONFIG_SERVICE).to(ConfigService);
+  bind<HttpClient>(CORE_DI.HTTP_CLIENT).to(HttpClientAxios).inSingletonScope();
+  bind(CORE_DI.CONFIG_SERVICE).to(ConfigService).inSingletonScope();
   bind(ErrorBoundaryInterceptor).toSelf();
   bind(ZodValidator).toSelf();
   bind(HttpResponseInterceptor).toSelf();
   bind(HttpErrorInterceptor).toSelf();
-  bind(LocalesManager).toSelf();
+  bind(LocalesManager).toSelf().inSingletonScope();
   bind(LocalRepository).toSelf();
 });
