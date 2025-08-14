@@ -7,8 +7,9 @@ import { GetProfileResponseDTO } from "../dtos/GetProfileResponseDTO";
 export class ProfileService {
   constructor(private readonly localRepository: LocalRepository) {}
 
-  async getProfile() {
+  async getProfile(lang: string) {
     const res = await this.localRepository.get<GetProfileResponseDTO>(
+      lang,
       "profile"
     );
     return new Profile(res);

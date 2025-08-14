@@ -7,8 +7,11 @@ import { GetJobsResponseDTO } from "../dtos/get-jobs-response-dto";
 export class JobsService {
   constructor(private readonly localRepository: LocalRepository) {}
 
-  async getJobs(): Promise<Jobs> {
-    const res = await this.localRepository.get<GetJobsResponseDTO>("jobs");
+  async getJobs(lang: string): Promise<Jobs> {
+    const res = await this.localRepository.get<GetJobsResponseDTO>(
+      lang,
+      "jobs"
+    );
     return new Jobs(res);
   }
 }

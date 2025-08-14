@@ -7,7 +7,6 @@ import { ConfigService } from "../services/config-service";
 import { ZodValidator } from "../services/zod-validator";
 import { HttpResponseInterceptor } from "../interceptors/http-response.interceptor";
 import { HttpErrorInterceptor } from "../interceptors/http-error.interceptor";
-import { LocalesManager } from "../services/locales-manager";
 import { LocalRepository } from "../services/local-respository";
 
 export const CoreModule = new ContainerModule((bind) => {
@@ -17,6 +16,5 @@ export const CoreModule = new ContainerModule((bind) => {
   bind(ZodValidator).toSelf();
   bind(HttpResponseInterceptor).toSelf();
   bind(HttpErrorInterceptor).toSelf();
-  bind(LocalesManager).toSelf().inSingletonScope();
   bind(LocalRepository).toSelf();
 });

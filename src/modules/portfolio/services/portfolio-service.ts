@@ -8,11 +8,11 @@ import { GetItemMenuDTO } from "../models/GetItemMenuDTO";
 export class PortfolioService {
   constructor(private readonly localRepository: LocalRepository) {}
 
-  async getHomePageTitles() {
+  async getHomePageTitles(lang: string) {
     const response = await this.localRepository.get<{
       big: string;
       small: string;
-    }>("page-title");
+    }>(lang, "page-title");
 
     return {
       big: response.big,
@@ -20,8 +20,9 @@ export class PortfolioService {
     };
   }
 
-  async getItemMenus(): Promise<ItemMenues> {
+  async getItemMenus(lang: string): Promise<ItemMenues> {
     const itemMenu = await this.localRepository.get<GetItemMenuDTO[]>(
+      lang,
       "item-menu"
     );
     return new ItemMenues(itemMenu);

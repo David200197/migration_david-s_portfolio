@@ -6,7 +6,7 @@ import { LocalRepository } from "@/modules/core/services/local-respository";
 export class BlogService {
   constructor(private readonly localRepository: LocalRepository) {}
 
-  async getBlogSection(): Promise<BlogSection> {
-    return await this.localRepository.get<BlogSection>("blog-section");
+  async getBlogSection(lang: string): Promise<BlogSection> {
+    return await this.localRepository.get<BlogSection>(lang, "blog-section");
   }
 }

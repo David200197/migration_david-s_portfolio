@@ -14,11 +14,15 @@ const profileService = getService(ProfileService);
 const jobsService = getService(JobsService);
 const blogService = getService(BlogService);
 
-export default async function Home() {
-  const title = await portfolioService.getHomePageTitles();
-  const profile = await profileService.getProfile();
-  const jobs = await jobsService.getJobs();
-  const blogSection = await blogService.getBlogSection();
+type Props = { params: Promise<{ lang: string }> };
+
+export default async function Home({ params }: Props) {
+  const { lang } = await params;
+  const title = await portfolioService.getHomePageTitles(lang);
+  const profile = await profileService.getProfile(lang);
+  const jobs = await jobsService.getJobs(lang);
+  const blogSection = await blogService.getBlogSection(lang);
+
   return (
     <PortfolioProvider value={{ title }}>
       <CoverPage />
