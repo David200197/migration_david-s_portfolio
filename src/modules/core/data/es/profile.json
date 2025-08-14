@@ -27,9 +27,9 @@
       "ref": "https://wa.me/qr/ETYTO7EVAJT6F1"
     },
     {
-      "tooltip": "Download CV",
+      "tooltip": "Descargar CV",
       "icon": "cv",
-      "ref": "/cv/en.pdf"
+      "ref": "/cv/es.pdf"
     }
   ],
   "skills": [
