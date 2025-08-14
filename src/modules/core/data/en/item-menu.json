@@ -11,18 +11,22 @@
     "href": "/en/#jobs",
     "title": "JOBS"
   },
-  { "href": "/en/blogs", "title": "BLOGS" },
+  { "href": "/maintenance", "title": "BLOGS" },
   {
     "title": "OTHERS",
     "submenu": [
       {
-        "href": "/en/side-projects",
+        "href": "/maintenance",
         "title": "Side Projects",
         "description": "This is my side projects"
       },
-      { "href": "/en/demos", "title": "Demos", "description": "Various demos" },
       {
-        "href": "/en/laboratory",
+        "href": "/maintenance",
+        "title": "Demos",
+        "description": "Various demos"
+      },
+      {
+        "href": "/maintenance",
         "title": "Laboratory",
         "description": "Experimental features and projects with documentation"
       }
